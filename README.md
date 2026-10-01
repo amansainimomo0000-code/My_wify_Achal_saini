@@ -1,15 +1,15 @@
-# Happy Girlfriend Day 💌
+# My Wife Achal Saini 💕 — Happy Girlfriend Day 💌
 
-A single-page, animated 3D web experience built for Girlfriend Day (Aug 1). No frameworks, no build step — just open it and go.
+A romantic, animated 3D web experience built with love for Achal Saini. Featuring 3D interactive particle effects, love letter envelope, personalized gallery of 13 moments, and background romantic music.
 
 ## What's inside
-- **Hero** — full-screen intro with a real-time 3D floating heart field, built with three.js (particles react to your mouse).
-- **Envelope** — a 3D CSS envelope you click to open, revealing a personal letter.
-- **Stats** — a "days together" counter based on a date you set.
-- **Flip cards** — 10 reasons, revealed with a 3D flip on tap.
-- **Carousel** — a 3D coverflow gallery containing six included cute illustrated portraits.
-- **Closing** — a heartbeat animation and a "Send Love" button that bursts floating hearts.
-- **Project fullscreen** — a fixed button in the bottom-right corner opens the complete experience in browser fullscreen.
+- **Hero** — full-screen intro with real-time 3D floating hearts field built with Three.js (particles react to mouse/touch).
+- **Romantic Background Song** — automatic playback with interaction fallback and floating music toggle.
+- **Envelope** — 3D CSS envelope you click to open, revealing a personal love letter.
+- **Stats** — "days together" live counter.
+- **Flip Cards** — 10 reasons why I love you with 3D flip animation.
+- **Frames Worth Keeping** — 3D Coverflow gallery containing 13 real moments, matching captions, navigation dots, and full-screen lightbox viewer.
+- **Closing** — pulsing heartbeat animation and "Send Love" floating heart burst.
 
 ## How to run it
 1. Unzip the folder.

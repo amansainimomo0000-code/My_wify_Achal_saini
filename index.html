@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Happy Girlfriend Day 💕</title>
-<meta name="description" content="A beautiful love letter built just for you, SIMMI. Happy Girlfriend Day!" />
+<meta name="description" content="A beautiful love letter built just for you, ACHAL. Happy Girlfriend Day!" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -33,13 +33,13 @@
   <div id="customize-panel" class="hidden">
     <h4>Personalize</h4>
     <label>Her name
-      <input type="text" id="input-name" placeholder="e.g. Riya" maxlength="24" />
+      <input type="text" id="input-name" placeholder="e.g. Achal" maxlength="24" />
     </label>
     <label>Together since
       <input type="date" id="input-date" />
     </label>
     <label>Your name (signature)
-      <input type="text" id="input-signature" placeholder="e.g. Arjun" maxlength="24" />
+      <input type="text" id="input-signature" placeholder="e.g. Aman" maxlength="24" />
     </label>
     <button id="save-customize">Save</button>
     <p class="hint">Saved on this device only.</p>
@@ -55,7 +55,7 @@
     <h1 class="hero-title">
       Happy<br />
       <span class="script">Girlfriend Day</span><br />
-      <span id="hero-name" class="hero-name-glow">SIMMI</span>
+      <span id="hero-name" class="hero-name-glow">ACHAL</span>
     </h1>
     <p class="hero-sub">A little corner of the internet, built only to remind you how loved you are today — and every day. You make my world beautiful just by being in it. 💗</p>
     <button class="scroll-cue" id="scroll-cue">
@@ -76,11 +76,11 @@
           <div class="envelope-seal">💋</div>
         </div>
         <div class="letter" id="letter-paper">
-          <p class="letter-greeting">My Dearest <span id="letter-name">SIMMI</span>,</p>
+          <p class="letter-greeting">My Dearest <span id="letter-name">ACHAL</span>,</p>
           <p>Some days deserve their own name — today is yours. Girlfriend Day is really just an excuse for the world to catch up on something I already know every single day: <strong>I'm the luckiest person</strong> because you chose me.</p>
           <p>Thank you for the butterflies, the late-night calls that turn into early morning conversations, and for being my calm in every storm. You are my favorite hello and my hardest goodbye.</p>
           <p>Every love song makes sense because of you. Every sunset is prettier because I watch it thinking of your smile. 🌹</p>
-          <p class="letter-sign">Forever yours,<br/>— <span id="letter-signature">Ayushkr Pandey</span> 💕</p>
+          <p class="letter-sign">Forever yours,<br/>— <span id="letter-signature">Aman Saini</span> 💕</p>
         </div>
       </div>
       <p class="envelope-hint" id="envelope-hint">💋 tap the envelope to open your love letter</p>
@@ -133,6 +133,13 @@
       <div class="carousel-stage" id="carousel-stage"></div>
       <button class="carousel-arrow right" id="arrow-right" aria-label="next">›</button>
     </div>
+    <div class="carousel-info">
+      <div class="carousel-counter" id="carousel-counter">
+        <span class="current-index" id="current-photo-num">1</span> / <span class="total-count">13</span>
+      </div>
+      <p class="carousel-active-caption" id="carousel-active-caption"></p>
+      <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Photo navigation"></div>
+    </div>
   </section>
 
   <!-- ============ PROPOSE SECTION ============ -->
@@ -158,14 +165,15 @@
     <div class="closing-heart-wrap">
       <div class="closing-heart" id="closing-heart"></div>
     </div>
-    <h2 class="closing-title">I Love You, <span id="closing-name">SIMMI</span> 💕</h2>
+    <h2 class="closing-title">I Love You, <span id="closing-name">ACHAL</span> 💕</h2>
     <p class="closing-sub">Press the heart. Let it out. 💗</p>
     <button id="burst-btn" class="burst-btn">Send All My Love ♥</button>
-    <p class="closing-footer">Made with all my love · <span id="closing-signature">Ayushkr Pandey</span> 💕</p>
+    <p class="closing-footer">Made with all my love · <span id="closing-signature">Aman Saini</span> 💕</p>
   </section>
 
-  <!-- ============ MUSIC TOGGLE ============ -->
-  <button id="music-toggle" class="music-toggle" title="Toggle romantic music">
+  <!-- ============ BACKGROUND MUSIC ============ -->
+  <audio id="bg-music" src="music/you_will_be_my_girl.mp3" preload="auto" loop></audio>
+  <button id="music-toggle" class="music-toggle" title="Play romantic music" aria-label="Toggle romantic music">
     🎵
   </button>
 

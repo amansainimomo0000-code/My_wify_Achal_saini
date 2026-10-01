@@ -150,8 +150,8 @@ function loadConfig(){
 }
 
 function applyConfig(cfg){
-  const name = cfg.name && cfg.name.trim() ? cfg.name.trim() : 'SIMMI';
-  const signature = cfg.signature && cfg.signature.trim() ? cfg.signature.trim() : 'Ayushkr Pandey';
+  const name = cfg.name && cfg.name.trim() ? cfg.name.trim() : 'ACHAL';
+  const signature = cfg.signature && cfg.signature.trim() ? cfg.signature.trim() : 'Aman Saini';
 
   document.getElementById('hero-name').textContent = name;
   document.getElementById('letter-name').textContent = name;
@@ -305,16 +305,83 @@ document.getElementById('scroll-cue').addEventListener('click', ()=>{
 /* ---------- 8. 3D PORTRAIT CAROUSEL + FULL VIEW ---------- */
 (function initCarousel(){
   const stage = document.getElementById('carousel-stage');
+  const dotsContainer = document.getElementById('carousel-dots');
+  const activeCaptionEl = document.getElementById('carousel-active-caption');
+  const photoNumEl = document.getElementById('current-photo-num');
+  const totalCountEl = document.querySelector('.total-count');
+
   const portraits = [
-    { src:'assets/cute-girl-1.svg', caption:'Her beautiful smile 💕' },
-    { src:'assets/cute-girl-2.svg', caption:'My little sunshine ☀️' },
-    { src:'assets/cute-girl-3.svg', caption:'Sweetest energy ever ✨' },
-    { src:'assets/cute-girl-4.svg', caption:'Beautifully you 🌹' },
-    { src:'assets/cute-girl-5.svg', caption:'My happy place 🏠' },
-    { src:'assets/cute-girl-6.svg', caption:'Always adorable 💗' }
+    {
+      src: 'image/829584927_2524258518082278_2874709040343789630_n.jpg',
+      caption: 'Under the stars, with the light of my life 🌟💑',
+      position: 'center 70%'
+    },
+    {
+      src: 'image/833751932_4058627694440061_8748541548711955878_n.jpg',
+      caption: 'Sun-kissed perfection — my golden hour queen ☀️👑💛',
+      position: 'center 35%'
+    },
+    {
+      src: 'image/830562382_1426145682804750_3978810212272011194_n.jpg',
+      caption: 'Cafe dates & holding your arm forever ☕💕',
+      position: 'center 28%'
+    },
+    {
+      src: 'image/828953491_1822515495558309_3715233921919634777_n.jpg',
+      caption: 'Jhumkas, that sweet smile & pure charm 🌸💖',
+      position: 'center 22%'
+    },
+    {
+      src: 'image/828894912_1606445880977539_5138036918730245414_n.jpg',
+      caption: 'Evening glow at Qutub Minar with my favourite smile 🛕✨',
+      position: 'center 52%'
+    },
+    {
+      src: 'image/830728282_2293269704848245_1897196353028111468_n.jpg',
+      caption: 'Late night 3:51 AM calls & your sweet sleeping face 🌙😴',
+      position: 'center 75%'
+    },
+    {
+      src: 'image/831253551_1027564470305992_308442721507289181_n.jpg',
+      caption: 'In your arms is where I belong 🤍💫',
+      position: 'center 60%'
+    },
+    {
+      src: 'image/829196830_2305505183543621_2977908186388951947_n.jpg',
+      caption: 'Pure royalty in black & gold saree 🖤✨',
+      position: 'center 25%'
+    },
+    {
+      src: 'image/832321606_1114427860948837_4820507601708653879_n.jpg',
+      caption: 'That playful look that always makes me blush 😉💞',
+      position: 'center 35%'
+    },
+    {
+      src: 'image/831376088_1122929820086913_6847745861175629572_n.jpg',
+      caption: 'Miles apart, but never far from my heart 📱✨',
+      position: 'center 40%'
+    },
+    {
+      src: 'image/829671043_4060835207543628_5811884185745220363_n.jpg',
+      caption: 'My favorite piece of art in black & white 🤍🌸',
+      position: 'center 30%'
+    },
+    {
+      src: 'image/834221883_1755954449036803_6261491384054057190_n.jpg',
+      caption: 'A smile that melts away all my worries 🥺💗',
+      position: 'center 25%'
+    },
+    {
+      src: 'image/834295721_1064369099546697_4891184176500457422_n.jpg',
+      caption: 'Side by side, holding hands through every chapter 🤝♾️',
+      position: 'center 50%'
+    }
   ];
+
   const N = portraits.length;
+  if(totalCountEl) totalCountEl.textContent = N;
   const items = [];
+  const dots = [];
 
   /* Full-viewport lightbox */
   const viewer = document.createElement('div');
@@ -343,13 +410,14 @@ document.getElementById('scroll-cue').addEventListener('click', ()=>{
   const nextButton = viewer.querySelector('.photo-viewer-next');
   let lastFocusedElement = null;
 
+  stage.innerHTML = '';
   portraits.forEach((portrait, i)=>{
     const el = document.createElement('figure');
     el.className = 'carousel-item';
-    el.setAttribute('aria-label', `Portrait ${i + 1}: ${portrait.caption}`);
+    el.setAttribute('aria-label', `Photo ${i + 1}: ${portrait.caption}`);
     el.setAttribute('tabindex', '0');
     el.innerHTML = `
-      <img src="${portrait.src}" alt="Cute illustrated portrait" loading="lazy" draggable="false" />
+      <img src="${portrait.src}" alt="${portrait.caption}" loading="lazy" draggable="false" style="object-position: ${portrait.position || 'center'};" />
       <span class="full-view-badge" aria-hidden="true">⛶ Full view</span>
       <figcaption><span>♥</span>${portrait.caption}</figcaption>`;
     stage.appendChild(el);
@@ -373,6 +441,25 @@ document.getElementById('scroll-cue').addEventListener('click', ()=>{
     });
   });
 
+  // Create navigation dots
+  if(dotsContainer){
+    dotsContainer.innerHTML = '';
+    portraits.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.setAttribute('type', 'button');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Go to photo ${idx + 1}`);
+      dot.addEventListener('click', () => {
+        current = idx;
+        render();
+        if(viewer.classList.contains('open')) updateViewer();
+      });
+      dotsContainer.appendChild(dot);
+      dots.push(dot);
+    });
+  }
+
   let current = 0;
   let touchStartX = 0;
   let viewerTouchStartX = 0;
@@ -389,11 +476,32 @@ document.getElementById('scroll-cue').addEventListener('click', ()=>{
       const scale = abs === 0 ? 1.05 : 0.92;
       el.style.transform = `translateX(${tx}px) translateZ(${tz}px) rotateY(${rotY}deg) scale(${scale})`;
       el.style.opacity = abs > 2 ? 0 : (1 - abs*0.26);
+      el.style.pointerEvents = abs > 2 ? 'none' : 'auto';
       el.style.filter = abs === 0 ? 'brightness(1.08) saturate(1.06)' : 'brightness(0.68) saturate(0.82)';
-      el.style.zIndex = 10 - abs;
+      el.style.zIndex = 20 - abs;
       el.classList.toggle('active', abs === 0);
       el.setAttribute('aria-hidden', abs > 2 ? 'true' : 'false');
       el.setAttribute('aria-label', `${portraits[i].caption}${abs === 0 ? '. Open full view' : '. Select photo'}`);
+    });
+
+    // Update active caption bar below carousel
+    if(activeCaptionEl){
+      activeCaptionEl.style.opacity = '0';
+      activeCaptionEl.style.transform = 'translateY(4px)';
+      setTimeout(()=>{
+        activeCaptionEl.innerHTML = portraits[current].caption;
+        activeCaptionEl.style.opacity = '1';
+        activeCaptionEl.style.transform = 'translateY(0)';
+      }, 120);
+    }
+
+    // Update photo counter
+    if(photoNumEl) photoNumEl.textContent = current + 1;
+
+    // Update dots state
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === current);
+      dot.setAttribute('aria-selected', idx === current ? 'true' : 'false');
     });
   }
 
@@ -708,56 +816,97 @@ document.getElementById('scroll-cue').addEventListener('click', ()=>{
   });
 })();
 
-/* ---------- 13. MUSIC TOGGLE (Ambient romantic tone) ---------- */
+/* ---------- 13. BACKGROUND MUSIC (Autoplay with interaction fallback) ---------- */
 (function initMusic(){
   const btn = document.getElementById('music-toggle');
-  if(!btn) return;
+  let audio = document.getElementById('bg-music');
 
-  let audioCtx = null;
-  let isPlaying = false;
-  let oscillators = [];
+  if (!audio) {
+    audio = new Audio('music/you_will_be_my_girl.mp3');
+    audio.id = 'bg-music';
+    audio.loop = true;
+    document.body.appendChild(audio);
+  }
 
-  function createRomanticAmbient(){
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const masterGain = audioCtx.createGain();
-    masterGain.gain.value = 0.04; // very soft
-    masterGain.connect(audioCtx.destination);
+  audio.volume = 0.7;
+  let userManuallyPaused = false;
 
-    // Soft chord — C major 7
-    const freqs = [261.63, 329.63, 392.00, 493.88];
-    freqs.forEach(freq =>{
-      const osc = audioCtx.createOscillator();
-      osc.type = 'sine';
-      osc.frequency.value = freq;
+  function updateButtonState(isPlaying) {
+    if (!btn) return;
+    if (isPlaying) {
+      btn.classList.add('playing');
+      btn.textContent = '🎶';
+      btn.title = 'Pause romantic music';
+      btn.setAttribute('aria-pressed', 'true');
+    } else {
+      btn.classList.remove('playing');
+      btn.textContent = '🎵';
+      btn.title = 'Play romantic music';
+      btn.setAttribute('aria-pressed', 'false');
+    }
+  }
 
-      const gain = audioCtx.createGain();
-      gain.gain.value = 0.01;
-      gain.gain.linearRampToValueAtTime(0.015, audioCtx.currentTime + 2);
+  function startMusic() {
+    if (userManuallyPaused) return;
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          updateButtonState(true);
+          removeInteractionListeners();
+        })
+        .catch(() => {
+          // Autoplay blocked by browser policy without user gesture
+          updateButtonState(false);
+        });
+    }
+  }
 
-      osc.connect(gain);
-      gain.connect(masterGain);
-      osc.start();
-      oscillators.push({osc, gain});
+  function onFirstInteraction() {
+    if (!userManuallyPaused && audio.paused) {
+      startMusic();
+    }
+  }
+
+  const interactionEvents = ['click', 'touchstart', 'keydown', 'scroll', 'pointerdown'];
+  function addInteractionListeners() {
+    interactionEvents.forEach(evt => {
+      window.addEventListener(evt, onFirstInteraction, { passive: true });
     });
   }
 
-  btn.addEventListener('click', ()=>{
-    if(!isPlaying){
-      createRomanticAmbient();
-      isPlaying = true;
-      btn.classList.add('playing');
-      btn.textContent = '🎶';
-    } else {
-      oscillators.forEach(({osc, gain})=>{
-        gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
-        osc.stop(audioCtx.currentTime + 0.6);
-      });
-      oscillators = [];
-      audioCtx.close();
-      audioCtx = null;
-      isPlaying = false;
-      btn.classList.remove('playing');
-      btn.textContent = '🎵';
+  function removeInteractionListeners() {
+    interactionEvents.forEach(evt => {
+      window.removeEventListener(evt, onFirstInteraction);
+    });
+  }
+
+  // Attempt instant autoplay
+  startMusic();
+
+  // Setup interaction listeners so audio begins on first click/tap/scroll
+  addInteractionListeners();
+
+  // Manual toggle button
+  if (btn) {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audio.paused) {
+        userManuallyPaused = false;
+        audio.play().then(() => updateButtonState(true)).catch(() => {});
+      } else {
+        userManuallyPaused = true;
+        audio.pause();
+        updateButtonState(false);
+      }
+    });
+  }
+
+  // Keep button state in sync
+  audio.addEventListener('play', () => updateButtonState(true));
+  audio.addEventListener('pause', () => {
+    if (userManuallyPaused || audio.paused) {
+      updateButtonState(false);
     }
   });
 })();
