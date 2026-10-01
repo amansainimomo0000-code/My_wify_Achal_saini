@@ -11,7 +11,14 @@ A romantic, animated 3D web experience built with love for Achal Saini. Featurin
 - **Frames Worth Keeping** — 3D Coverflow gallery containing 13 real moments, matching captions, navigation dots, and full-screen lightbox viewer.
 - **Closing** — pulsing heartbeat animation and "Send Love" floating heart burst.
 
-## How to run it
+## Deploy on Vercel 🚀
+1. Go to [vercel.com](https://vercel.com) and log in with your GitHub account.
+2. Click **"Add New..."** → **"Project"**.
+3. Import **`amansainimomo0000-code/My_wify_Achal_saini`**.
+4. Leave Framework Preset as **Other** (Root directory `./`).
+5. Click **"Deploy"** — your live romantic website will be live with free SSL in seconds!
+
+## How to run locally
 1. Unzip the folder.
 2. Open the folder in VS Code.
 3. Install the **Live Server** extension (if you don't have it), right-click `index.html` → **Open with Live Server**.
